@@ -6,7 +6,7 @@
 //  Copyright © 2020 Andry Pro. All rights reserved.
 //
 
-struct Coach {
+struct Coach: Decodable {
     let firstname: String
     let lastname: String
 }

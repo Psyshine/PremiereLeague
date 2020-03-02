@@ -7,5 +7,7 @@
 //
 
 struct Club: Decodable {
-    let teams: [Team]
+    let teams: [String: Team]
+    let coaches: [String: Coach]
+    let benues: [String: Venue]
 }
