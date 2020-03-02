@@ -9,15 +9,18 @@
 import UIKit
 
 class TeamListViewController: UITableViewController {
-
+    //MARK: - IB Outlets
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
-    let networkManager = NetworkManager()
+    
+   private let networkManager = NetworkManager()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.rowHeight = 100
         activityIndicator.startAnimating()
         activityIndicator.hidesWhenStopped = true
         networkManager.fetchData()
+        
     }
 
     // MARK: - Table view data source

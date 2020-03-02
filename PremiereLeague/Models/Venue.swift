@@ -7,6 +7,6 @@
 //
 
 struct Venue: Decodable {
-    let name: String
-    let capacity: Int
+    let name: String?
+    let capacity: Int?
 }

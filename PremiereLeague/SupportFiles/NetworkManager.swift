@@ -10,7 +10,9 @@ import Foundation
 
 class NetworkManager {
     let stringUrl = "https://api-football-beta.p.rapidapi.com/teams?league=39&season=2019"
-    
+    let headerField = "x-rapidapi-key"
+    let key = "54af1a4903msh35823917aaff704p1dc6e7jsn819156d418b0"
+   
     
     
     
@@ -18,21 +20,23 @@ class NetworkManager {
         guard let url = URL(string: stringUrl) else { return }
         let session = URLSession.shared
         var reguest = URLRequest(url: url)
-        reguest.addValue("54af1a4903msh35823917aaff704p1dc6e7jsn819156d418b0", forHTTPHeaderField: "x-rapidapi-key")
-        session.dataTask(with: reguest) { (data, responce, error) in
+        reguest.addValue(key, forHTTPHeaderField: headerField )
+        session.dataTask(with: reguest) { (data, _, error) in
           
             guard let data = data else { return }
             let decoder = JSONDecoder()
-           
             do {
-                let clubs = try decoder.decode(Club.self, from: data)
-                print(clubs)
+                let responces = try decoder.decode(Responce.self, from: data)
+                print(responces)
+            
             } catch let error {
                 print(error)
             }
             
             
         }.resume()
+       
     }
+    
     
 }

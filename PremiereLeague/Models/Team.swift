@@ -7,6 +7,6 @@
 //
 
 struct Team: Decodable {
-    let name: String
-    let logo: String
+    let name: String?
+    let logo: String?
 }

@@ -7,6 +7,6 @@
 //
 
 struct Coach: Decodable {
-    let firstname: String
-    let lastname: String
+    let firstname: String?
+    let lastname: String?
 }
