@@ -9,34 +9,33 @@
 import Foundation
 
 class NetworkManager {
-    let stringUrl = "https://api-football-beta.p.rapidapi.com/teams?league=39&season=2019"
-    let headerField = "x-rapidapi-key"
-    let key = "54af1a4903msh35823917aaff704p1dc6e7jsn819156d418b0"
-   
+    // MARK: - Private Properties
+    private let stringUrl = "https://api-football-beta.p.rapidapi.com/teams?league=39&season=2019"
+    private let headerField = "x-rapidapi-key"
+    private let key = "375f877e78msh226342c7681f19bp14645bjsndbe607cdd077"
     
+    // MARK: - Public Properties
+    var teams: Responce?
     
-    
-    func fetchData(){
+    // MARK: - Public Methods
+    func fetchData() {
         guard let url = URL(string: stringUrl) else { return }
         let session = URLSession.shared
         var reguest = URLRequest(url: url)
         reguest.addValue(key, forHTTPHeaderField: headerField )
         session.dataTask(with: reguest) { (data, _, error) in
-          
             guard let data = data else { return }
             let decoder = JSONDecoder()
             do {
-                let responces = try decoder.decode(Responce.self, from: data)
-                print(responces)
-            
+                self.teams = try decoder.decode(Responce.self, from: data)
+                print(self.teams as Any)
+                DispatchQueue.main.async {
+                    let teamListVS = TeamListViewController()
+                    teamListVS.tableView.reloadData()
+                }
             } catch let error {
                 print(error)
             }
-            
-            
         }.resume()
-       
     }
-    
-    
 }
